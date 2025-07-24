@@ -1,0 +1,17 @@
+services:
+  redis:
+    container_name: redis
+    image: redis:latest
+    command: 
+      - redis-server 
+      - --save 60 1 
+      - --requirepass ${REDIS_PASSWORD}
+      - --loglevel warning
+    ports:
+      - "${REDIS_PORT}:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD} # Opcional
+    volumes:
+      - './redis_data:/data'
+    #restart: unless-stopped
+    
