@@ -13,5 +13,11 @@ services:
       - REDIS_PASSWORD=${REDIS_PASSWORD} # Opcional
     volumes:
       - './redis_data:/data'
-    #restart: unless-stopped
+    restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
     
